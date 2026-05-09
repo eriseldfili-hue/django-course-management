@@ -13,7 +13,13 @@ class TeacherCreateSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
     def create(self, validated_data):
-        return Teacher.objects.create(**validated_data)
+        return Teacher.objects.create(
+            name=validated_data['teacher'],  # map 'teacher' -> model's 'name' field
+            email=validated_data['email']
+       )
+
+#   def create(self, validated_data):
+#       return Teacher.objects.create(**validated_data)
 
 
 class TeacherUpdateSerializer(serializers.Serializer):
