@@ -77,6 +77,7 @@ class TeacherUpdateDeleteView(APIView):
        serializer = TeacherUpdateSerializer(
            teacher,
            data=request.data,
+           partial=True
        )
 
        if serializer.is_valid():
@@ -110,7 +111,7 @@ class TeacherUpdateDeleteView(APIView):
 class TeacherBulkCreateView(APIView):
 
     def post(self, request):
-        file = request.FILE.get("file")
+        file = request.FILES.get("file")
 
         if not file:
             return Response(
